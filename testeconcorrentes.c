@@ -3,17 +3,21 @@
 #include <stdlib.h>  /* biblioteca padrão ( atoi ) */
 #include <time.h>    /* para a semente aleatória */
 
-typedef struct _dados { 
- 	int n; // limite inferior do intervalo
-	int m; // limite superior do intervalo
+typedef struct _dados {
+	//int n; // limite inferior do intervalo
+	//int m; // limite superior do intervalo
 	
 	double * conjunto;     // conjunto de dados
 	int tamanho_conjunto;  // tamanho do conjunto
 } Dados;
 
 double * dummy( int n );
-void mostrar_primos(int m, int n);
-int qtd_divisores( int n );
+//void mostrar_primos(int m, int n);
+//int qtd_divisores( int n );
+double calc_media();
+int soma( int x );
+int maior( int x );
+int menor( int x );
 
 void *runner(void * param); /* o thread */
 
@@ -36,7 +40,7 @@ int main(int argc, char *argv[]){
 		return 2048;
 	}
 
-	if (atoi(argv[2]) < 0) {
+	/*if (atoi(argv[2]) < 0) {
 		fprintf(stderr,"Argument %d must be non-negative\n",atoi(argv[2]));
 		return 2096;
 	}
@@ -44,13 +48,13 @@ int main(int argc, char *argv[]){
 	if (atoi(argv[1]) > atoi(argv[2])) {
 		fprintf(stderr,"Argument %d must be less than or equal %d \n",atoi(argv[1]), atoi(argv[2]));
 		return 2128;
-	}
+	}*/
 	// ======================================
 	
 	// preparação dos dados para a thread
 	Dados * d = (Dados *) malloc( sizeof(Dados) );
-	d->n = atoi(argv[1]);
-	d->m = atoi(argv[2]);
+	//d->n = atoi(argv[1]);
+	//d->m = atoi(argv[2]);
 	
 	d->tamanho_conjunto = 20;
 	d->conjunto = dummy( d->tamanho_conjunto );
@@ -77,8 +81,13 @@ void * runner(void * param) {
 	
 	Dados * x = (Dados *) param;
 	
-	mostrar_primos(x->n, x->m);
+	//mostrar_primos(x->n, x->m);
 	
+	
+	
+	printf("A media dos valores: %g\n", calc_media());
+	printf("O maior entre os valores: %d\n", maior());
+	printf("O menor entre os valores: %d\n", menor());
 	
 	printf("Tamanho do conjunto: %d\n", x->tamanho_conjunto);
 	int i = 0;
@@ -92,27 +101,48 @@ void * runner(void * param) {
 /* 
  * mostra a sequencia de números primos no intervalo [n, m]
  */
-void mostrar_primos(int m, int n) {
-	int i =0;
-	for( i = m; i <= n; i++) {
-		if ( qtd_divisores( i ) <= 2 ) {
-			printf(" %d ", i);
-		}
-	}	
-}
+//void mostrar_primos(int m, int n) {
+//	int i =0;
+//	for( i = m; i <= n; i++) {
+//		if ( qtd_divisores( i ) <= 2 ) {
+//			printf(" %d ", i);
+//		}
+//	}	
+//}
 
 /**
  * retorna a quantidade de divisores de X
  */
-int qtd_divisores( int x ) {
-	int j = 1;
-	int s = 0;  // quantidade de divisores de X
-	for( j = 1; j <= x; j++) {
-		if ( (x % j) == 0 ) {
-			s = s + 1;
-		}
+
+double calc_media() {
+	double result;
+	result = soma()/x->tamanho_conjunto;
+	return result;
+}
+ 
+
+ 
+int soma( int x ) {
+	int soma;
+	soma = soma + x;
+	return s;
+}
+ 
+ 
+int maior( int x ) {
+	int s;
+	if (s < x){
+		s = x;
 	}
 	return s;
+}
+
+int menor( int x ) {
+	int r;
+	if (r > x){
+		r = x;
+	}
+	return r;
 }
 
 /**

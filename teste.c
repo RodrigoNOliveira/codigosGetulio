@@ -6,7 +6,8 @@
 
 double media();
 int vet[5] = { 4, 5 ,6 ,7 ,3};
-
+double result = 0;
+int menor, maior;
 
 int main(int argc, char *argv[]) {
 	
@@ -33,7 +34,7 @@ int main(int argc, char *argv[]) {
 double media() {
 	int x = 0;
 	double soma = 0;
-	double result = 0;
+
 	
 	for( x=0 ; x < 5; x++) {
 		soma+= vet[x];
@@ -45,8 +46,8 @@ double media() {
 }
 
 int minimo() {
-	int x,menor;
-	
+	int x;
+	menor = vet[0];
 	for( x=0 ; x < 5; x++) {
 		if (menor > vet[x]){
 			menor=vet[x];
@@ -56,8 +57,8 @@ int minimo() {
 }
 
 int max() {
-	int x,maior;
-	
+	int x;
+	maior = vet[0];
 	for( x=0 ; x < 5; x++) {
 		if (maior < vet[x]){
 			maior=vet[x];
